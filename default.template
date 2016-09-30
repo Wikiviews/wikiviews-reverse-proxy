@@ -1,0 +1,20 @@
+upstream frontend {
+    server ${FRONTEND_ADDR}:${FRONTEND_PORT};
+}
+
+upstream api {
+    server ${API_ADDR}:${API_PORT};
+}
+
+server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+        proxy_pass http://frontend;
+    }
+
+    location /api {
+        proxy_pass http://api;
+    }
+}
