@@ -1,13 +1,13 @@
 sudo: required
 services:
-- docker
+  - docker
 language: node_js
 node_js:
-- '6'
-script: npm run build:prod
+  - '6'
+script:
+  - "./build/travis-ci.build.sh"
 after_success:
-- "./build/travis-ci.build.sh"
-- "./build/travis-ci.deploy.sh"
+  - "./build/travis-ci.deploy.sh"
 env:
   global:
   - REPO="wikiviews/wikiviews-reverse-proxy"
